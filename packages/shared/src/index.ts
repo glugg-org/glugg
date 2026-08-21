@@ -1,1 +1,1 @@
-export * from './schemas/test.schema';
+export * from './schemas/health.schema';

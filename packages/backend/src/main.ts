@@ -2,11 +2,21 @@ import { cleanupOpenApiDoc } from 'nestjs-zod';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import 'dotenv/config';
 
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  console.log(process.env.FRONTEND_URL);
+
+  app.enableCors({
+    origin: [process.env.FRONTEND_URL], // Allowed origins
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods
+    credentials: true, // Allow credentials (e.g., cookies)
+    allowedHeaders: 'Content-Type, Accept', // Allowed headers
+  });
 
   const openApiDoc = SwaggerModule.createDocument(
     app,

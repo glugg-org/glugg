@@ -1,0 +1,5 @@
+import z from 'zod';
+
+export const healthResponseSchema = z.string();
+
+export type HealthResponse = z.infer<typeof healthResponseSchema>;

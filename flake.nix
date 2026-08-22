@@ -22,20 +22,48 @@
       forAllSystems = lib.genAttrs supportedSystems;
     in
     {
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        rec {
+          inherit (pkgs.callPackage ./packages.nix { }) glugg-frontend glugg-backend;
+
+          glugg-backend-container = pkgs.dockerTools.buildImage {
+            name = "glugg-backend-container";
+            tag = glugg-backend.version;
+            copyToRoot = [
+              pkgs.nodejs-slim_24
+              glugg-backend
+            ];
+            config = {
+              Cmd = [
+                "${pkgs.nodejs-slim_24}/bin/node"
+                "${glugg-backend}/dist/main.js"
+              ];
+            };
+          };
+
+        }
+      );
+
       devShells = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
           nativeBuildInputs = with pkgs; [ ];
           buildInputs = with pkgs; [
+            dive
             nodejs_24
-            pnpm
+            pnpm_11
             (python314.withPackages (pythonPackages: with pythonPackages; [ locust ]))
           ];
         in
         {
           default = pkgs.mkShellNoCC {
             inherit nativeBuildInputs buildInputs;
+            allowSubstitutes = false;
           };
         }
       );

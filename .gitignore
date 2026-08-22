@@ -12,3 +12,5 @@ tsconfig.tsbuildinfo
 .env
 
 *.log
+
+__pycache__/

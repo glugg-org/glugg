@@ -30,6 +30,7 @@
           buildInputs = with pkgs; [
             nodejs_24
             pnpm
+            (python314.withPackages (pythonPackages: with pythonPackages; [ locust ]))
           ];
         in
         {

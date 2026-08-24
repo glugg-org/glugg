@@ -1,0 +1,73 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Nix
+      uses: cachix/install-nix-action@v18
+      with:
+        extra_nix_config: |
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
+    - name: Restore and save Nix store
+      uses: nix-community/cache-nix-action@v7
+      with:
+        primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+        restore-prefixes-first-match: nix-${{ runner.os }}-
+        gc-max-store-size-linux: 1073741824
+        purge: true
+        purge-prefixes: nix-${{ runner.os }}-
+        purge-primary-key: never
+
+    - name: Build front-end
+      run: |
+        nix build .#glugg-frontend --out-link glugg-frontend
+
+    - name: Build back-end
+      run: |
+        nix build .#glugg-backend --out-link glugg-backend
+
+    - name: Build container
+      run: |
+        nix build .#glugg-backend-container --out-link glugg-backend-container.tar.gz
+
+    - name: Prepare for release
+      id: prep
+      run: |
+        tar czf glugg-frontend.tar.gz --dereference glugg-frontend && \
+        tar czf glugg-backend.tar.gz --dereference glugg-backend && \
+        echo "date=$(date -u +%Y-%m-%dT%H%M%S)" >> $GITHUB_OUTPUT
+
+    - name: Upload front-end
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend
+        path: glugg-frontend.tar.gz
+
+    - name: Upload back-end
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend
+        path: glugg-backend.tar.gz
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{  steps.prep.outputs.date }}
+        name: ${{ steps.prep.outputs.date }}
+        body: |
+          Automated build of glugg at ${{ steps.prep.outputs.date }}
+        files: |
+          glugg-frontend.tar.gz
+          glugg-backend.tar.gz

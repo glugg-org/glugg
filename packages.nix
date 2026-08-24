@@ -18,6 +18,22 @@ let
   pnpmInstallFlags = [
     "--shamefully-hoist"
   ];
+
+  pnpmDeps = fetchPnpmDeps {
+    inherit
+      version
+      pnpm
+      src
+      pnpmInstallFlags
+      ;
+
+    pname = "glugg-dependencies";
+
+    fetcherVersion = 4;
+    sourceRoot = "${src.name}";
+    hash = "sha256-djpAbC/ElbtD/2IYcbQwC64Yb3TlKZxojTU6RZFNhXE=";
+    # hash = lib.fakeHash;
+  };
 in
 {
   glugg-frontend = stdenv.mkDerivation (finalAttrs: {
@@ -25,6 +41,7 @@ in
       version
       src
       pnpmInstallFlags
+      pnpmDeps
       ;
 
     pname = "glugg-frontend";
@@ -38,20 +55,6 @@ in
     pnpmRoot = ".";
 
     pnpmWorkspaces = [ "@glugg/frontend..." ];
-
-    pnpmDeps = fetchPnpmDeps {
-      inherit (finalAttrs) pname pnpmWorkspaces;
-      inherit
-        version
-        pnpm
-        src
-        pnpmInstallFlags
-        ;
-      fetcherVersion = 4;
-      sourceRoot = "${src.name}";
-      hash = "sha256-PJtR8hanXb5B962UtlZYNpetYab4Y/WbDnaP1tYtY3M=";
-      # hash = lib.fakeHash;
-    };
 
     preBuild = ''
       export pnpm_config_verify_deps_before_run=false
@@ -82,6 +85,7 @@ in
       version
       src
       pnpmInstallFlags
+      pnpmDeps
       ;
 
     pname = "glugg-backend";
@@ -95,20 +99,6 @@ in
     pnpmRoot = ".";
 
     pnpmWorkspaces = [ "@glugg/backend..." ];
-
-    pnpmDeps = fetchPnpmDeps {
-      inherit (finalAttrs) pname pnpmWorkspaces;
-      inherit
-        version
-        pnpm
-        src
-        pnpmInstallFlags
-        ;
-      fetcherVersion = 4;
-      sourceRoot = "${src.name}";
-      hash = "sha256-9PW2v6VxEqRXM5A26nu1LKopTcaeGqqEc/2zpR62Ogs=";
-      # hash = lib.fakeHash;
-    };
 
     preBuild = ''
       export pnpm_config_verify_deps_before_run=false

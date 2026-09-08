@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glugg-backend
+  namespace: glugg-deployment
+  labels:
+    app: glugg-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: glugg-backend
+  template:
+    metadata:
+      labels:
+        app: glugg-backend
+    spec:
+      containers:
+        - name: glugg-backend-container
+          image: TODO
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 3000
+          resources:
+            limits:
+              memory: '50Mi'
+            requests:
+              memory: '50Mi'
+              cpu: '250m'
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        runAsUser: 1001
+        runAsGroup: 1001
+        runAsNonRoot: true

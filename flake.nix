@@ -31,8 +31,7 @@
           inherit (pkgs.callPackage ./packages.nix { }) glugg-frontend glugg-backend;
 
           glugg-backend-container = pkgs.dockerTools.buildImage {
-            name = "glugg-backend-container";
-            tag = glugg-backend.version;
+            name = "glugg-org/glugg-backend";
             copyToRoot = [
               pkgs.nodejs-slim_24
               glugg-backend
@@ -63,6 +62,11 @@
         {
           default = pkgs.mkShellNoCC {
             inherit nativeBuildInputs buildInputs;
+            allowSubstitutes = false;
+          };
+
+          ci = pkgs.mkShellNoCC {
+            buildInputs = with pkgs; [ skopeo ];
             allowSubstitutes = false;
           };
         }

@@ -30,12 +30,14 @@
         rec {
           inherit (pkgs.callPackage ./packages.nix { }) glugg-frontend glugg-backend;
 
-          glugg-backend-container = pkgs.dockerTools.buildImage {
+          glugg-backend-container = pkgs.dockerTools.buildLayeredImage {
             name = "glugg-org/glugg-backend";
-            copyToRoot = [
+
+            contents = [
               pkgs.nodejs-slim_24
               glugg-backend
             ];
+
             config = {
               Cmd = [
                 "${pkgs.nodejs-slim_24}/bin/node"

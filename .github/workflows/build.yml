@@ -97,12 +97,12 @@ jobs:
 
     - name: Build container
       run: |
-        nix build .#glugg-backend-container --out-link glugg-backend-container.tar.gz
+        nix build .#glugg-backend-container --out-link glugg-backend-container
 
     - name: Publish container
       run: |
         nix develop .#ci --command skopeo copy \
           --dest-creds "${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}" \
-          oci-archive:./glugg-backend-container.tar.gz \
+          docker-archive:./glugg-backend-container \
           docker://ghcr.io/glugg-org/glugg-backend:${{ github.sha }}
 

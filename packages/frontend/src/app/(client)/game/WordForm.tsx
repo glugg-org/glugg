@@ -1,6 +1,6 @@
 import { Letters } from '@glugg/shared';
 import { LetterInput } from './LetterInput';
-import { useState } from 'react';
+import { useCallback, useEffectEvent, useState } from 'react';
 import { useEffect } from 'react';
 
 export const WORD_MAX_LENGTH = 20;
@@ -27,41 +27,44 @@ export function WordForm({
   const [word, setWord] = useState('');
   const [letters, setLetters] = useState(lettersProp);
 
-  const addLetter = (letter: string) => {
-    setWord((word) =>
-      word.split('').length < WORD_MAX_LENGTH
-        ? word + letter.toLowerCase()
-        : word,
-    );
-  };
+  const addLetter = useCallback(
+    (letter: string) => {
+      setWord((word) =>
+        word.split('').length < WORD_MAX_LENGTH
+          ? word + letter.toLowerCase()
+          : word,
+      );
+    },
+    [setWord],
+  );
 
-  const deleteLetter = () => {
+  const deleteLetter = useCallback(() => {
     setWord((word) => word.substring(0, word.length - 1));
-  };
+  }, [setWord]);
+
+  const handleKeyDown = useEffectEvent((event: KeyboardEvent) => {
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+      return;
+    }
+
+    if (event.key === 'Backspace') {
+      event.preventDefault();
+      deleteLetter();
+    }
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      onWordSubmit(word);
+    }
+  });
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.ctrlKey || event.metaKey || event.altKey) {
-        return;
-      }
-
-      if (event.key === 'Backspace') {
-        event.preventDefault();
-        deleteLetter();
-      }
-
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        onWordSubmit(word);
-      }
-    };
-
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [deleteLetter, onWordSubmit, word]);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center gap-2">
@@ -73,9 +76,12 @@ export function WordForm({
         )}
       </p>
       <LetterInput letters={letters} onLetterInput={addLetter} />
-      <div className="flex flex-row items-center justify-center gap-1">
-        <button onClick={deleteLetter}>Delete</button>
+      <div className="flex flex-row items-center justify-center gap-2">
+        <button className="text-xl" onClick={deleteLetter}>
+          Delete
+        </button>
         <button
+          className="text-xl"
           onClick={() => {
             setLetters(shuffleLetters);
           }}
@@ -83,6 +89,7 @@ export function WordForm({
           Shuffle
         </button>
         <button
+          className="text-xl"
           onClick={() => {
             onWordSubmit(word);
           }}

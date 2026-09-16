@@ -2,6 +2,7 @@ import { Letters } from '@glugg/shared';
 import { LetterInput } from './LetterInput';
 import { useCallback, useEffectEvent, useState } from 'react';
 import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 export const WORD_MAX_LENGTH = 20;
 
@@ -24,6 +25,8 @@ export function WordForm({
   letters: Letters;
   onWordSubmit?: (word: string) => void;
 }) {
+  const t = useTranslations('WordForm');
+
   const [word, setWord] = useState('');
   const [letters, setLetters] = useState(lettersProp);
 
@@ -72,13 +75,13 @@ export function WordForm({
         {word ? (
           word.substring(0, 1).toUpperCase() + word.substring(1)
         ) : (
-          <span className="text-gray-700">Enter a word...</span>
+          <span className="text-gray-700">{t('wordPlaceholder')}</span>
         )}
       </p>
       <LetterInput letters={letters} onLetterInput={addLetter} />
       <div className="flex flex-row items-center justify-center gap-2">
         <button className="text-xl" onClick={deleteLetter}>
-          Delete
+          {t('deleteButton')}
         </button>
         <button
           className="text-xl"
@@ -86,7 +89,7 @@ export function WordForm({
             setLetters(shuffleLetters);
           }}
         >
-          Shuffle
+          {t('shuffleButton')}
         </button>
         <button
           className="text-xl"
@@ -94,7 +97,7 @@ export function WordForm({
             onWordSubmit(word);
           }}
         >
-          Enter
+          {t('enterButton')}
         </button>
       </div>
     </div>

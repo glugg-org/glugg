@@ -1,0 +1,16 @@
+{
+  "HomePage": {
+    "title": "Glugg",
+    "playButton": "Jugar"
+  },
+  "WordForm": {
+    "wordPlaceholder": "Introduzca una palabra...",
+    "deleteButton": "Borrar",
+    "shuffleButton": "Revolver",
+    "enterButton": "Enviar"
+  },
+  "Metadata": {
+    "title": "Glugg",
+    "description": "¡Compite para formar más palabras usando 7 letras que tus oponentes!"
+  }
+}

@@ -52,6 +52,7 @@ export function LetterInput({
   letters: Letters;
   onLetterInput?: (s: string) => void;
 }) {
+  // TODO: Letter position should be based on rotating an element with an offset, to ease animation later.
   return (
     <div className="relative w-[6em] h-[6.6em] text-4xl">
       {/* Center */}

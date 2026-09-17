@@ -4,5 +4,6 @@ allowBuilds:
   '@nestjs/core': true
   '@parcel/watcher': true
   '@scarf/scarf': true
+  '@swc/core': true
   sharp: true
   unrs-resolver: true

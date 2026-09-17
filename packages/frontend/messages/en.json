@@ -1,0 +1,16 @@
+{
+  "HomePage": {
+    "title": "Glugg",
+    "playButton": "Play"
+  },
+  "WordForm": {
+    "wordPlaceholder": "Enter a word...",
+    "deleteButton": "Delete",
+    "shuffleButton": "Shuffle",
+    "enterButton": "Submit"
+  },
+  "Metadata": {
+    "title": "Glugg",
+    "description": "Compete to form more words out of seven letters than your opponents!"
+  }
+}

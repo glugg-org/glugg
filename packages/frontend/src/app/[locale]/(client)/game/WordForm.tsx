@@ -7,12 +7,14 @@ import { useTranslations } from 'next-intl';
 export const WORD_MAX_LENGTH = 20;
 
 function shuffleLetters(letters: Letters): Letters {
+  const shuffledRing = [...letters.ring]
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value) as Letters['ring'];
+
   return {
     center: letters.center,
-    ring: letters.ring
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value) as Letters['ring'],
+    ring: shuffledRing,
   };
 }
 

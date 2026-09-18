@@ -1,6 +1,6 @@
 'use client';
 
-import { Background } from '@/lib/components/background';
+import { Background } from '@/lib/components/Background';
 import { WordForm } from './WordForm';
 import { Timer } from './Timer';
 

@@ -1,4 +1,4 @@
-import { Background } from '@/lib/components/background';
+import { Background } from '@/lib/components/Background';
 import { DetectLocaleAndRedirect } from './DetectLocaleAndRedirect';
 
 export default function RedirectPage() {

@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/navigation';
-import { Background } from '@/lib/components/background';
+import { Background } from '@/lib/components/Background';
 import { useTranslations } from 'next-intl';
 import ExportedImage from 'next-image-export-optimizer';
 

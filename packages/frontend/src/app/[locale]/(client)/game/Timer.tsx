@@ -7,11 +7,12 @@ const REVEAL_CENTER = '50% 50%';
 export function Timer({
   millis,
   initialMillis = 0,
-  size = 150,
+  className = '',
 }: {
   millis: number;
   initialMillis?: number;
   size?: number;
+  className?: string;
 }) {
   const [revealAngle, setRevealAngle] = useState(
     `${((initialMillis / millis) * 360).toString()}deg`,
@@ -61,19 +62,15 @@ export function Timer({
 
   return (
     <div
-      className="relative shrink-0 drop-shadow-lg drop-shadow-neutral-900/80"
-      style={{
-        width: size,
-        height: size,
-      }}
+      className={`relative shrink-0 drop-shadow-lg drop-shadow-neutral-900/80 ${className}`}
     >
       <div className="absolute inset-0" style={maskStyle}>
         <ExportedImage
-          src="/images/Sol.png"
+          src="/images/Sol_Aspas.png"
           loading="eager"
           alt=""
-          width={350}
-          height={350}
+          width={200}
+          height={200}
           className="size-full"
         />
       </div>
@@ -83,9 +80,9 @@ export function Timer({
           src="/images/Luna.png"
           loading="eager"
           alt=""
-          width={350}
-          height={350}
-          className="size-full scale-82"
+          width={200}
+          height={200}
+          className="size-full -translate-y-[1px] -translate-x-[1px]"
         />
       </div>
     </div>

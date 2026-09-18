@@ -23,9 +23,11 @@ export function WordForm({
   onWordSubmit = () => {
     // Do nothing
   },
+  className = '',
 }: {
   letters: Letters;
   onWordSubmit?: (word: string) => void;
+  className?: string;
 }) {
   const t = useTranslations('WordForm');
 
@@ -72,7 +74,9 @@ export function WordForm({
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div
+      className={`flex flex-col items-center justify-center gap-2 ${className}`}
+    >
       <p className="text-3xl">
         {word ? (
           word.substring(0, 1).toUpperCase() + word.substring(1)

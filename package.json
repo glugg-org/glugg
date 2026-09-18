@@ -22,9 +22,9 @@
     "clean": "pnpm -r clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@glugg/shared": "workspace:*",
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^9.39.5",
+    "@glugg/shared": "workspace:*",
     "@types/node": "^22.20.2",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
@@ -44,5 +44,8 @@
     "*.{json,md}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.8.0"
   }
 }

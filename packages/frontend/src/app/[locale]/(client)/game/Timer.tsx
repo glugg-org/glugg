@@ -62,7 +62,7 @@ export function Timer({
 
   return (
     <div
-      className={`relative shrink-0 drop-shadow-lg drop-shadow-neutral-900/80 ${className}`}
+      className={`relative shrink-0 drop-shadow-lg drop-shadow-neutral-900/80 animate-wiggle-small ${className}`}
     >
       <div className="absolute inset-0" style={maskStyle}>
         <ExportedImage

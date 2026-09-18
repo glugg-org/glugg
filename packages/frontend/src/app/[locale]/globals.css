@@ -47,6 +47,20 @@ body {
   }
 }
 
+@keyframes wiggle-small {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-wiggle-small {
+  animation: wiggle-small 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
 @keyframes wiggle {
   0%, 100% {
     transform: rotate(-8deg);
@@ -55,7 +69,6 @@ body {
     transform: rotate(8deg);
   }
 }
-
 
 .animate-wiggle {
   animation: wiggle 4s ease-in-out infinite;
@@ -74,6 +87,7 @@ body {
     scale: var(--scale);
   }
 }
+
 
 
 @utility parchment-* {

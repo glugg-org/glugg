@@ -1,24 +1,32 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { locales } from '@/i18n/locales';
+import { Locale, locales } from '@/i18n/locales';
 import { Link, usePathname } from '@/i18n/navigation';
 import { Menu } from '@base-ui/react/menu';
 
-function LocaleButton({ locale }: { locale: (typeof locales)[number] }) {
+export function LocaleButton({
+  locale,
+  className = '',
+}: {
+  locale: Locale;
+  className?: string;
+}) {
   return (
-    <div className="overlap-container size-full hover-grow mix-blend-multiply">
+    <div
+      className={`overlap-container size-full hover-grow mix-blend-multiply hover:saturate-120 ${className}`}
+    >
       <div className="overlap parchment-amber-800/15 size-full scale-130" />
       <img
         src={`/images/locales/${locale}.png`}
         alt={`Select ${locale}`}
-        className="overlap sepia-60 size-full border-neutral-700 border-3"
+        className="overlap saturate-130 sepia-60 size-full border-neutral-700 border-3"
       />
     </div>
   );
 }
 
-export function LocalePicker({ locale }: { locale: (typeof locales)[number] }) {
+export function LocalePicker({ locale }: { locale: Locale }) {
   const pathname = usePathname();
 
   return (

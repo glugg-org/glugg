@@ -17,5 +17,14 @@
     "title": "¿Andáis perdido, navegante?",
     "description": "(Página no encontrada)",
     "return": "Volver"
+  },
+  "Quickplay": {
+    "title": "Partida rápida",
+    "gameLanguage": "Idioma de la partida",
+    "search": "Buscar"
+  },
+  "Languages": {
+    "en": "Inglés",
+    "es": "Español"
   }
 }

@@ -17,5 +17,14 @@
     "title": "Ye lost, matey?",
     "description": "(Page not found)",
     "return": "Return"
+  },
+  "Quickplay": {
+    "title": "Quickplay",
+    "gameLanguage": "Game language",
+    "search": "Search"
+  },
+  "Languages": {
+    "en": "English",
+    "es": "Spanish"
   }
 }

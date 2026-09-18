@@ -8,10 +8,10 @@ import {
   W3CTraceContextPropagator,
   W3CBaggagePropagator,
 } from '@opentelemetry/core';
-import { B3Propagator } from '@opentelemetry/propagator-b3';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { WideEventSpanProcessor } from 'nestjs-otel';
+import { HostMetricsInstrumentation } from '@opentelemetry/instrumentation-host-metrics';
 
 const metricReader = new PrometheusExporter({
   port: 8081,
@@ -40,13 +40,10 @@ const otelSDK = new NodeSDK({
         },
       },
     }),
+    new HostMetricsInstrumentation(),
   ],
   textMapPropagator: new CompositePropagator({
-    propagators: [
-      new W3CTraceContextPropagator(),
-      new W3CBaggagePropagator(),
-      new B3Propagator(),
-    ],
+    propagators: [new W3CTraceContextPropagator(), new W3CBaggagePropagator()],
   }),
 });
 

@@ -3,8 +3,7 @@ import './globals.css';
 import getLocale from '@/lib/i18n/getLocale';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-
-const locales = ['en', 'es'];
+import { locales } from '@/i18n/locales';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

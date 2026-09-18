@@ -12,5 +12,10 @@
   "Metadata": {
     "title": "Glugg",
     "description": "¡Compite para formar más palabras usando 7 letras que tus oponentes!"
+  },
+  "NotFound": {
+    "title": "¿Andáis perdido, navegante?",
+    "description": "(Página no encontrada)",
+    "return": "Volver"
   }
 }

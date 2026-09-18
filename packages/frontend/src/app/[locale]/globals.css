@@ -27,3 +27,114 @@ body {
   color: var(--foreground);
   font-family: "New Rocker", Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .centered-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlap-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .overlap {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+
+.animate-wiggle {
+  animation: wiggle 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@utility hover-grow-* {
+  --scale: calc(--value(number, --default(107)) * 1%);
+  --duration: --modifier([*], --default(var(--default-transition-duration)));
+
+  transition-property: scale;
+  transition-timing-function: var(--default-transition-timing-function); /* cubic-bezier(0.4, 0, 0.2, 1) */
+  transition-duration: var(--duration);
+
+  &:hover {
+    scale: var(--scale);
+  }
+}
+
+
+@utility parchment-* {
+  --parchment-color: --value(--color-*);
+  --parchment-alpha: calc(--modifier(integer, --default(100)) * 1%);
+
+  position: relative;
+
+  background:
+    radial-gradient(
+      ellipse at 30% 40%,
+      oklch(
+        from var(--parchment-color)
+        calc(l - 0.1)
+        calc(c + 0.01)
+        h / calc(var(--parchment-alpha) * 0.25)
+      ),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 75% 65%,
+      oklch(
+        from var(--parchment-color)
+        calc(l - 0.1)
+        calc(c + 0.01)
+        h / calc(var(--parchment-alpha) * 0.2)
+      ),
+      transparent 50%
+    ),
+    oklch(
+      from var(--parchment-color)
+      l c h / var(--parchment-alpha)
+    );
+
+  clip-path: polygon(
+    2% 3%, 14% 2%, 27% 3%, 41% 2%, 55% 4%, 69% 2%, 83% 3%, 98% 2%,
+    97% 15%, 99% 29%, 97% 43%, 98% 57%, 96% 72%, 98% 86%, 97% 98%,
+    84% 96%, 71% 98%, 57% 96%, 43% 98%, 28% 96%, 15% 98%, 2% 97%,
+    3% 84%, 1% 70%, 3% 56%, 2% 42%, 4% 28%, 2% 15%
+  );
+
+  mix-blend-mode: multiply;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        ellipse at 20% 20%,
+        oklch(
+          from var(--parchment-color)
+          calc(l + 0.1)
+          calc(c + 0.01)
+          h / calc(var(--parchment-alpha) * 0.3)
+        ),
+        transparent 30%
+      );
+
+    mix-blend-mode: multiply;
+  }
+}
+

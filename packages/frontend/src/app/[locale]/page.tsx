@@ -13,6 +13,7 @@ export default function Home() {
           <div className="overlap size-[245px] xl:size-[450px] parchment-amber-800/10" />
           <ExportedImage
             src="/images/Logo.png"
+            loading="eager"
             alt=""
             width={350}
             height={350}

@@ -76,13 +76,6 @@ body {
 }
 
 
-@utility decoration-* {
-  --decoration-color: --value(--color-*);
-  --decoration-alpha: calc(--modifier(integer, --default(100)) * 1%);
-
-  background-color: rgb(from var(--decoration-color) / var(--decoration-alpha));
-}
-
 @utility parchment-* {
   --parchment-color: --value(--color-*);
   --parchment-alpha: calc(--modifier(integer, --default(100)) * 1%);

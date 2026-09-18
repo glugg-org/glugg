@@ -6,14 +6,12 @@ const absoluteStyle = 'absolute inset-0 m-auto w-[1.75em] h-[1.75em]';
 
 export function LetterButton({
   letter,
-  className = '',
   Image: ImageProp = <></>,
   onLetterInput = () => {
     // Do nothing
   },
 }: {
   letter: string;
-  className?: string;
   Image?: React.ReactNode;
   onLetterInput?: (letter: string) => void;
 }) {
@@ -53,6 +51,7 @@ function CenterPlanet() {
   return (
     <ExportedImage
       src="/images/letterPicker/Center.png"
+      loading="eager"
       alt=""
       width={200}
       height={200}
@@ -65,6 +64,7 @@ function OuterPlanetBlue() {
   return (
     <ExportedImage
       src="/images/letterPicker/Outer_Blue.png"
+      loading="eager"
       alt=""
       width={200}
       height={200}
@@ -77,6 +77,7 @@ function OuterPlanetCyan() {
   return (
     <ExportedImage
       src="/images/letterPicker/Outer_Cyan.png"
+      loading="eager"
       alt=""
       width={200}
       height={200}
@@ -89,6 +90,7 @@ function OuterPlanetRed() {
   return (
     <ExportedImage
       src="/images/letterPicker/Outer_Red.png"
+      loading="eager"
       alt=""
       width={200}
       height={200}
@@ -101,6 +103,7 @@ function OuterPlanetOrange() {
   return (
     <ExportedImage
       src="/images/letterPicker/Outer_Orange.png"
+      loading="eager"
       alt=""
       width={200}
       height={200}
@@ -137,6 +140,7 @@ export function LetterInput({
       <div className="flex overlap w-full h-full parchment-amber-800/10 -z-1" />
       <ExportedImage
         src="/images/letterPicker/Ring.png"
+        loading="eager"
         alt=""
         width={800}
         height={800}
@@ -148,7 +152,6 @@ export function LetterInput({
           letter={letters.center}
           onLetterInput={onLetterInput}
           Image={<CenterPlanet />}
-          className=""
         />
         {sortedRing.map((letter, index) => {
           const i = letters.ring.findIndex((l) => l === letter);

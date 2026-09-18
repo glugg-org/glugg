@@ -12,5 +12,10 @@
   "Metadata": {
     "title": "Glugg",
     "description": "Compete to form more words out of seven letters than your opponents!"
+  },
+  "NotFound": {
+    "title": "Ye lost, matey?",
+    "description": "(Page not found)",
+    "return": "Return"
   }
 }

@@ -2,7 +2,9 @@ packages:
   - 'packages/*'
 allowBuilds:
   '@nestjs/core': true
+  '@parcel/watcher': true
   '@scarf/scarf': true
+  '@swc/core': true
   protobufjs: true
   sharp: true
   unrs-resolver: true

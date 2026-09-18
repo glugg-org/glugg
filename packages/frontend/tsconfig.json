@@ -20,8 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@glugg/shared": ["../shared/src"]
+      "@/*": ["./src/*"]
     },
     "noUnusedLocals": false,
     "noUnusedParameters": false
@@ -33,6 +32,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js", "src/app/[locale]/error.js"  ],
   "exclude": ["node_modules"]
 }

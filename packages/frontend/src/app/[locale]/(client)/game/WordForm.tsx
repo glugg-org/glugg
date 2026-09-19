@@ -77,7 +77,7 @@ export function WordForm({
     <div
       className={`flex flex-col items-center justify-center gap-2 ${className}`}
     >
-      <p className="text-3xl">
+      <p className="text-[1.5rem]">
         {word ? (
           word.substring(0, 1).toUpperCase() + word.substring(1)
         ) : (

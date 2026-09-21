@@ -1,6 +1,7 @@
 import ExportedImage from 'next-image-export-optimizer';
 import { useEffect, useState } from 'react';
 import './timer.css';
+import { cn } from 'cn';
 
 const REVEAL_CENTER = '50% 50%';
 
@@ -62,7 +63,10 @@ export function Timer({
 
   return (
     <div
-      className={`relative shrink-0 drop-shadow-lg drop-shadow-neutral-900/80 animate-wiggle-small ${className}`}
+      className={cn(
+        'relative shrink-0 drop-shadow-lg drop-shadow-neutral-900/80 animate-wiggle-small',
+        className,
+      )}
     >
       <div className="absolute inset-0" style={maskStyle}>
         <ExportedImage

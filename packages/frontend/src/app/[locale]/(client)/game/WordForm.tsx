@@ -3,6 +3,7 @@ import { LetterInput } from './LetterInput';
 import { useCallback, useEffectEvent, useState } from 'react';
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { cn } from 'cn';
 
 export const WORD_MAX_LENGTH = 20;
 
@@ -75,7 +76,10 @@ export function WordForm({
 
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-2 ${className}`}
+      className={cn(
+        'flex flex-col items-center justify-center gap-2',
+        className,
+      )}
     >
       <p className="text-[1.5rem]">
         {word ? (

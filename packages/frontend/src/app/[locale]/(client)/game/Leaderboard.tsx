@@ -1,3 +1,4 @@
+import { cn } from 'cn';
 import { AnimatePresence, motion } from 'motion/react';
 
 const MAX = 3;
@@ -15,7 +16,7 @@ export function Leaderboard({
 
   return (
     <div
-      className={`overlap-container text-xl h-[4.5em] w-[12em] ${className}`}
+      className={cn('overlap-container text-xl h-[4.5em] w-[12em]', className)}
     >
       <div className="overlap w-full h-full">
         <div className="w-full h-[1.4em] parchment-amber-500/30 my-0.5" />

@@ -4,6 +4,7 @@
 import { Locale, locales } from '@/i18n/locales';
 import { Link, usePathname } from '@/i18n/navigation';
 import { Menu } from '@base-ui/react/menu';
+import { cn } from 'cn';
 
 export function LocaleButton({
   locale,
@@ -14,7 +15,10 @@ export function LocaleButton({
 }) {
   return (
     <div
-      className={`overlap-container size-full hover-grow mix-blend-multiply hover:saturate-120 ${className}`}
+      className={cn(
+        'overlap-container size-full hover-grow mix-blend-multiply hover:saturate-120',
+        className,
+      )}
     >
       <div className="overlap parchment-amber-800/15 size-full scale-130" />
       <img

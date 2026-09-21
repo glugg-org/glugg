@@ -1,3 +1,5 @@
+import { cn } from 'cn';
+
 export const backgroundStyle = `
         before:absolute before:inset-0
         before:bg-size-[600px] before:bg-center before:-z-10
@@ -11,9 +13,11 @@ export function Background({
 }: Readonly<{ children: React.ReactNode; className?: string }>) {
   return (
     <main
-      className={`min-h-screen bg-cover text-black centered-flex flex-col gap-5
-        ${backgroundStyle}
-        ${className}`}
+      className={cn(
+        'min-h-screen bg-cover text-black centered-flex flex-col gap-5',
+        backgroundStyle,
+        className,
+      )}
     >
       {children}
     </main>

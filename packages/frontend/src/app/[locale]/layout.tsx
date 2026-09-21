@@ -4,7 +4,6 @@ import getLocale from '@/lib/i18n/getLocale';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n/locales';
-import { LocalePicker } from '@/lib/components/LocalePicker';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -29,10 +28,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`antialiased`}>
-        <NextIntlClientProvider>
-          <LocalePicker locale={locale} />
-          {children}
-        </NextIntlClientProvider>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

@@ -26,5 +26,8 @@
   "Languages": {
     "en": "English",
     "es": "Spanish"
+  },
+  "WordList": {
+    "title": "Your words"
   }
 }

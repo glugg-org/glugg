@@ -12,6 +12,7 @@
   "dependencies": {
     "@glugg/shared": "workspace:*",
     "@tanstack/react-query": "^5.102.8",
+    "cn": "^0.3.0",
     "next": "16.3.5",
     "next-image-export-optimizer": "^1.21.1",
     "next-intl": "^4.14.5",

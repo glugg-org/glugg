@@ -6,6 +6,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
 import 'dotenv/config';
+import { config } from './config';
 
 declare const module: any;
 
@@ -15,7 +16,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useLogger(app.get(Logger));
 
-  console.log(process.env.FRONTEND_URL);
+  console.log(config.FRONTEND_URL);
 
   app.enableCors({
     origin: [process.env.FRONTEND_URL], // Allowed origins

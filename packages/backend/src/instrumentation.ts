@@ -13,13 +13,14 @@ import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { WideEventSpanProcessor } from 'nestjs-otel';
 import { HostMetricsInstrumentation } from '@opentelemetry/instrumentation-host-metrics';
 import { resourceFromAttributes } from '@opentelemetry/resources';
+import { config } from './config';
 
 const metricReader = new PrometheusExporter({
   port: 8081,
 });
 
 const traceExporter = new OTLPTraceExporter({
-  url: 'http://localhost:4318/v1/traces',
+  url: config.OTLP_TRACE_EXPORTER_URL,
 });
 
 const otelSDK = new NodeSDK({

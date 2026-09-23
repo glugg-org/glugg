@@ -1,4 +1,5 @@
 import Pino, { Logger, LoggerOptions } from 'pino';
+import { config } from '../config';
 
 export const loggerOptions: LoggerOptions = {
   level: 'info',
@@ -12,7 +13,7 @@ export const loggerOptions: LoggerOptions = {
       {
         target: 'pino-loki',
         options: {
-          host: 'http://localhost:3100',
+          host: config.LOKI_URL,
           labels: { app: 'glugg-backend' },
         },
         level: 'info',

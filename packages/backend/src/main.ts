@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import otelSDK from './instrumentation';
 
 import { cleanupOpenApiDoc } from 'nestjs-zod';
@@ -5,7 +6,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
-import 'dotenv/config';
 import { config } from './config';
 
 declare const module: any;

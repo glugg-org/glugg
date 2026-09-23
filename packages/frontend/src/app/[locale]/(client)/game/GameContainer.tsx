@@ -5,7 +5,7 @@ import { Timer } from './Timer';
 import { WordForm } from './WordForm';
 import { useEffect, useState } from 'react';
 import { Leaderboard } from './Leaderboard';
-import { WordList, WordListColumn, WordListDrawer } from './WordListDrawer';
+import { WordListColumn, WordListDrawer } from './WordListDrawer';
 
 const words = [
   'oak',
@@ -67,7 +67,6 @@ const words = [
   'journey',
   'diamond',
   'fireplace',
-  'extraordinary',
 ];
 
 export function GameContainer() {
@@ -101,24 +100,25 @@ export function GameContainer() {
   }, [setLeaderboard]);
 
   return (
-    <div className="flex justify-center items-center gap-40">
+    <div className="flex justify-center items-center gap-20 2xl:gap-[10dvw] w-[60dvw]">
       <div className="centered-flex flex-col gap-6">
-        <WordListDrawer words={words} />
+        <WordListDrawer words={words} className="text-[2.5dvh]" />
 
         <Timer
           millis={59000}
           initialMillis={game.initialMillis}
-          className="size-[140px] xl:size-[200px]"
+          className="size-[25dvh]"
         />
 
-        <Leaderboard leaderboard={leaderboard} />
+        <Leaderboard leaderboard={leaderboard} className="text-[2.5dvh]" />
 
         <WordForm
           letters={game.letters as Letters}
           onWordSubmit={console.log}
+          className="text-[2.5dvh]"
         />
       </div>
-      <WordListColumn words={words} />
+      <WordListColumn words={words} className="text-[2.5dvh] min-w-120" />
     </div>
   );
 }

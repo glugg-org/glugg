@@ -81,20 +81,21 @@ export function WordForm({
         className,
       )}
     >
-      <p className="text-[1.5rem]">
+      <p className="text-[1.2em]">
         {word ? (
           word.substring(0, 1).toUpperCase() + word.substring(1)
         ) : (
           <span className="text-gray-700">{t('wordPlaceholder')}</span>
         )}
       </p>
-      <LetterInput letters={letters} onLetterInput={addLetter} />
+      <LetterInput
+        letters={letters}
+        onLetterInput={addLetter}
+        className="text-[1.7em]"
+      />
       <div className="flex flex-row items-center justify-center gap-2">
-        <button className="text-xl" onClick={deleteLetter}>
-          {t('deleteButton')}
-        </button>
+        <button onClick={deleteLetter}>{t('deleteButton')}</button>
         <button
-          className="text-xl"
           onClick={() => {
             setLetters(shuffleLetters);
           }}
@@ -102,7 +103,6 @@ export function WordForm({
           {t('shuffleButton')}
         </button>
         <button
-          className="text-xl"
           onClick={() => {
             onWordSubmit(word);
           }}

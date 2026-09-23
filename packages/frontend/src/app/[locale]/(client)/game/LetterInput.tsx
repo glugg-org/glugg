@@ -1,4 +1,5 @@
 import { Letters } from '@glugg/shared';
+import { cn } from 'cn';
 import ExportedImage from 'next-image-export-optimizer';
 import { useEffect } from 'react';
 
@@ -129,14 +130,16 @@ export function LetterInput({
   onLetterInput = () => {
     // Do nothing
   },
+  className = '',
 }: {
   letters: Letters;
   onLetterInput?: (s: string) => void;
+  className?: string;
 }) {
   const sortedRing = [...letters.ring].sort();
 
   return (
-    <div className="overlap-container w-[7.3em] h-[7.7em] text-4xl">
+    <div className={cn('overlap-container w-[7.3em] h-[7.7em]', className)}>
       <div className="flex overlap w-full h-full parchment-amber-800/10 -z-1" />
       <ExportedImage
         src="/images/letterPicker/Ring.png"

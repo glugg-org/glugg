@@ -19,9 +19,9 @@ export function Leaderboard({
       className={cn('overlap-container text-xl h-[4.5em] w-[12em]', className)}
     >
       <div className="overlap w-full h-full">
-        <div className="w-full h-[1.4em] parchment-amber-500/30 my-0.5" />
-        <div className="w-full h-[1.4em] parchment-orange-500/30 my-0.5" />
-        <div className="w-full h-[1.4em] parchment-red-500/30 my-0.5" />
+        <div className="w-full h-[1.4em] parchment-amber-500/30 my-[0.15em]" />
+        <div className="w-full h-[1.4em] parchment-orange-500/30 my-[0.15em]" />
+        <div className="w-full h-[1.4em] parchment-red-500/30 my-[0.15em]" />
       </div>
       <div className="overlap w-full h-full overflow-y-hidden">
         <AnimatePresence initial={false}>

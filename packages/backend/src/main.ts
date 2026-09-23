@@ -4,6 +4,7 @@ import { cleanupOpenApiDoc } from 'nestjs-zod';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Logger } from 'nestjs-pino';
 import 'dotenv/config';
 
 declare const module: any;
@@ -12,6 +13,7 @@ async function bootstrap() {
   otelSDK.start();
 
   const app = await NestFactory.create(AppModule);
+  app.useLogger(app.get(Logger));
 
   console.log(process.env.FRONTEND_URL);
 

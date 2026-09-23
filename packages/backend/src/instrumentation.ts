@@ -12,16 +12,20 @@ import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentation
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { WideEventSpanProcessor } from 'nestjs-otel';
 import { HostMetricsInstrumentation } from '@opentelemetry/instrumentation-host-metrics';
+import { resourceFromAttributes } from '@opentelemetry/resources';
 
 const metricReader = new PrometheusExporter({
   port: 8081,
 });
 
 const traceExporter = new OTLPTraceExporter({
-  url: 'http://opentelemetry-collector:4318/v1/traces',
+  url: 'http://localhost:4318/v1/traces',
 });
 
 const otelSDK = new NodeSDK({
+  resource: resourceFromAttributes({
+    [ATTR_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME ?? 'glugg-backend',
+  }),
   metricReader,
   spanProcessors: [
     new WideEventSpanProcessor(),
@@ -35,8 +39,7 @@ const otelSDK = new NodeSDK({
       },
       '@opentelemetry/instrumentation-pino': {
         logHook: (_span, logRecord) => {
-          logRecord[ATTR_SERVICE_NAME] =
-            process.env.OTEL_SERVICE_NAME ?? 'unknown-service';
+          logRecord[ATTR_SERVICE_NAME] = 'glugg-backend';
         },
       },
     }),

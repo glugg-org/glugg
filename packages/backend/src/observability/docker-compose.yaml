@@ -13,7 +13,7 @@ services:
       - 'host.docker.internal:host-gateway' # necesario en Linux; en Mac/Windows Docker Desktop ya lo resuelve solo
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana
     container_name: grafana
     ports:
       - '3001:3000'
@@ -27,7 +27,34 @@ services:
       - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
     depends_on:
       - prometheus
+      - loki
+      - tempo
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - '3100:3100'
+    command: -config.file=/etc/loki/local-config.yaml
+
+  tempo:
+    image: grafana/tempo:3.0.3
+    container_name: tempo
+    command: ['-config.file=/etc/tempo.yaml']
+    ports:
+      - '3200:3200' # API HTTP (la usa Grafana)
+      - '4317:4317' # OTLP gRPC
+      - '4318:4318' # OTLP HTTP
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml:ro
+      - tempo-data:/var/tempo
+    networks:
+      default:
+
+networks:
+  default:
 
 volumes:
   prometheus-data:
   grafana-data:
+  tempo-data:

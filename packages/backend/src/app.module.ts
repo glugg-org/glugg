@@ -18,6 +18,7 @@ import {
   Catch,
 } from '@nestjs/common';
 import { HealthModule } from './health/health.module';
+import { ValkeyModule } from './redis/valkey.module';
 
 @Catch(HttpException)
 class HttpExceptionFilter extends BaseExceptionFilter {
@@ -37,7 +38,7 @@ class HttpExceptionFilter extends BaseExceptionFilter {
 }
 
 @Module({
-  imports: [HealthModule],
+  imports: [HealthModule, ValkeyModule],
   controllers: [],
   providers: [
     {

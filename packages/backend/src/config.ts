@@ -7,6 +7,11 @@ export const configSchema = z.object({
   VALKEY_HOST: z.string(),
   VALKEY_PORT: z.coerce.number(),
   VALKEY_PASSWORD: z.string(),
+  DB_HOST: z.string(),
+  DB_PORT: z.coerce.number(),
+  DB_USER: z.string(),
+  DB_PASSWORD: z.string(),
+  DB_NAME: z.string(),
 });
 
 export type Config = z.infer<typeof configSchema>;

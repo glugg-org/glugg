@@ -1,6 +1,19 @@
 import z from 'zod';
 
+const zodOptionalNumber = z
+  .string()
+  .optional()
+  .transform((value) =>
+    value === '' || value === undefined ? undefined : value,
+  )
+  .nullable()
+  .refine((value) => value === undefined || !isNaN(Number(value)), {
+    message: 'Invalid number',
+  })
+  .transform((value) => (value === undefined ? undefined : Number(value)));
+
 export const configSchema = z.object({
+  PORT: zodOptionalNumber,
   FRONTEND_URL: z.url(),
   OTLP_TRACE_EXPORTER_URL: z.url(),
   LOKI_URL: z.url(),

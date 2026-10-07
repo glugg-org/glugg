@@ -1,13 +1,13 @@
-import { Link } from '@/i18n/navigation';
 import { Background } from '@/lib/components/Background';
 import ExportedImage from 'next-image-export-optimizer';
-import { LocalePicker } from '@/lib/components/LocalePicker';
 import getLocale from '@/lib/i18n/getLocale';
+import { QuickplayForm } from './QuickplayForm';
 import { getTranslations } from 'next-intl/server';
+import { LocalePicker } from '@/lib/components/LocalePicker';
 
-export default async function Home() {
+export default async function Quickplay() {
+  const t = await getTranslations('Quickplay');
   const locale = await getLocale();
-  const t = await getTranslations('HomePage');
 
   return (
     <>
@@ -26,18 +26,13 @@ export default async function Home() {
             />
           </div>
 
-          <div className="centered-flex flex-col gap-7 xl:gap-10 xl:-mt-6">
-            <div className="centered-flex flex-col text-7xl font-bold xl:text-[5.5rem]">
+          <div className="centered-flex flex-col gap-2 xl:gap-4 xl:-mt-6">
+            <div className="centered-flex flex-col text-4xl font-bold xl:text-5xl">
               <h1>{t('title')}</h1>
-              <div className="parchment-red-500/30 hover:parchment-red-500/45 transition-colors duration-200 w-[4em] h-[1.13em] -mt-[0.85em]" />
+              <div className="parchment-red-500/30 hover:parchment-red-500/45 transition-colors duration-200 w-full scale-x-120 h-[1.13em] -mt-[0.85em]" />
             </div>
 
-            <Link
-              className="text-3xl parchment-amber-200/90 hover:parchment-amber-300/65 px-4 py-3 min-w-40 text-center text-amber-950 xl:text-4xl xl:min-w-70 xl:text-5xl xl:py-6 hover-grow"
-              href="/game"
-            >
-              {t('playButton')}
-            </Link>
+            <QuickplayForm locale={locale} />
           </div>
         </div>
       </Background>

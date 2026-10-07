@@ -1,6 +1,6 @@
 'use client';
 
-import { Background } from '@/lib/components/background';
+import { Background } from '@/lib/components/Background';
 import ExportedImage from 'next-image-export-optimizer';
 import Link from 'next/link';
 import './[locale]/globals.css';

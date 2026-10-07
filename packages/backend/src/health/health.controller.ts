@@ -10,4 +10,14 @@ export class HealthController {
   getHealth(): HealthResponse {
     return this.healthService.getHealth();
   }
+
+  @Get('redis')
+  getRedisHealth() {
+    return this.healthService.getRedisHealth();
+  }
+
+  @Get('db')
+  async getDbHealth() {
+    return this.healthService.getDbHealth();
+  }
 }

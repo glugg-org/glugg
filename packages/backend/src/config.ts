@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import z from 'zod';
 
 const zodOptionalNumber = z
@@ -15,6 +17,7 @@ const zodOptionalNumber = z
 export const configSchema = z.object({
   PORT: zodOptionalNumber,
   FRONTEND_URL: z.url(),
+  OTEL_SERVICE_NAME: z.string().optional(),
   OTLP_TRACE_EXPORTER_URL: z.url(),
   LOKI_URL: z.url(),
   VALKEY_HOST: z.string(),

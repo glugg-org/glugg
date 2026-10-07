@@ -58,6 +58,7 @@
             dive
             nodejs_24
             pnpm_11
+            pgadmin4-desktopmode
             (python314.withPackages (pythonPackages: with pythonPackages; [ locust ]))
           ];
         in

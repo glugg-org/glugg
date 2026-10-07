@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import otelSDK from './instrumentation';
 
 import { cleanupOpenApiDoc } from 'nestjs-zod';
@@ -19,7 +18,7 @@ async function bootstrap() {
   console.log(config.FRONTEND_URL);
 
   app.enableCors({
-    origin: [process.env.FRONTEND_URL], // Allowed origins
+    origin: [config.FRONTEND_URL], // Allowed origins
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods
     credentials: true, // Allow credentials (e.g., cookies)
     allowedHeaders: 'Content-Type, Accept', // Allowed headers

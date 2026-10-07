@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@glugg/shared": "workspace:*",
+    "@nestjs-cls/transactional": "^4.0.1",
+    "@nestjs-cls/transactional-adapter-typeorm": "^2.0.1",
     "@nestjs/common": "^11.2.3",
     "@nestjs/core": "^11.2.3",
     "@nestjs/platform-express": "^11.2.3",
@@ -39,6 +41,7 @@
     "@opentelemetry/semantic-conventions": "^1.43.0",
     "dotenv": "^17.4.2",
     "ioredis": "^6.0.0",
+    "nestjs-cls": "^7.0.1",
     "nestjs-otel": "^8.1.1",
     "nestjs-pino": "^5.2.0",
     "nestjs-zod": "^5.5.0",

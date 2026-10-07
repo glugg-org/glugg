@@ -25,7 +25,7 @@ const traceExporter = new OTLPTraceExporter({
 
 const otelSDK = new NodeSDK({
   resource: resourceFromAttributes({
-    [ATTR_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME ?? 'glugg-backend',
+    [ATTR_SERVICE_NAME]: config.OTEL_SERVICE_NAME ?? 'glugg-backend',
   }),
   metricReader,
   spanProcessors: [

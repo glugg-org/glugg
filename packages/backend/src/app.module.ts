@@ -21,6 +21,10 @@ import { HealthModule } from './health/health.module';
 import { ValkeyModule } from './data/valkey.module';
 import { TypeOrmConfigModule } from './data/typeorm.module';
 import { LobbyModule } from './lobby/lobby.module';
+import { ClsModule } from 'nestjs-cls';
+import { ClsPluginTransactional } from '@nestjs-cls/transactional';
+import { getDataSourceToken, TypeOrmModule } from '@nestjs/typeorm';
+import { TransactionalAdapterTypeOrm } from '@nestjs-cls/transactional-adapter-typeorm';
 
 @Catch(HttpException)
 class HttpExceptionFilter extends BaseExceptionFilter {
@@ -40,7 +44,24 @@ class HttpExceptionFilter extends BaseExceptionFilter {
 }
 
 @Module({
-  imports: [HealthModule, ValkeyModule, TypeOrmConfigModule, LobbyModule],
+  imports: [
+    HealthModule,
+    ValkeyModule,
+    TypeOrmConfigModule,
+    LobbyModule,
+    ClsModule.forRoot({
+      global: true,
+      middleware: { mount: true },
+      plugins: [
+        new ClsPluginTransactional({
+          imports: [TypeOrmModule],
+          adapter: new TransactionalAdapterTypeOrm({
+            dataSourceToken: getDataSourceToken(),
+          }),
+        }),
+      ],
+    }),
+  ],
   controllers: [],
   providers: [
     {

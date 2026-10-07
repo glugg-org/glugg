@@ -13,7 +13,11 @@ import { join } from 'path';
       username: config.DB_USER,
       password: config.DB_PASSWORD,
       database: config.DB_NAME,
+
       entities: [join(__dirname, '..', '**', '*.entity{.ts,.js}')],
+
+      synchronize: false,
+      migrations: [join(__dirname, '..', 'migrations', '**', '*{.js,.ts}')],
     }),
   ],
 })

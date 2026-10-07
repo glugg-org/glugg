@@ -36,7 +36,7 @@ async function bootstrap() {
 
   SwaggerModule.setup('api', app, cleanupOpenApiDoc(openApiDoc));
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(config.PORT ?? 3000);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   if (module.hot) {

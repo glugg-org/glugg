@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HealthResponse } from '@glugg/shared';
-import { InjectRedis } from 'src/redis/valkey.decorators';
+import { InjectRedis } from 'src/data/valkey.decorators';
 import Redis from 'ioredis';
 import { DataSource } from 'typeorm';
 
